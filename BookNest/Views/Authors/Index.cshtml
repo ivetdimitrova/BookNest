@@ -1,0 +1,53 @@
+﻿@model IEnumerable<BookNest.Data.Author>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<link rel="stylesheet" href="~/css/authorsPictures.css" />
+
+<h1 class="page-title">Автори</h1>
+
+@if (User.IsInRole("Admin"))
+{
+    <p>
+    <a class="btn-create" asp-action="Create">Добави автор</a>
+</p>
+}
+
+
+<div class="authors-grid">
+    @foreach (var item in Model)
+    {
+        <div class="author-card @(User.IsInRole("Admin") ? "admin-mode" : "user-mode")">
+            <div class="image-container">
+                <img src="@item.ImageUrl" alt="@item.Name" class="author-img" />
+
+                @if (!User.IsInRole("Admin"))
+                {
+                    <div class="overlay">
+                        <a class="action-link details" asp-action="Details" asp-route-id="@item.Id">Виж повече</a>
+                    </div>
+                }
+            </div>
+
+            <div class="author-info">
+                <h3 class="author-name">@item.Name.Replace(" BG", "")</h3>
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="admin-controls">
+                        <a class="action-link edit" asp-action="Edit" asp-route-id="@item.Id">Редактирай</a>
+                        <span class="separator">|</span>
+                        <button type="button" class="action-btn delete"
+                                data-bs-toggle="modal"
+                                data-bs-target="#deleteAuthorModal-@item.Id">
+                            Изтрий
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <partial name="_AuthorDeleteModalPartial" model="item" />
+    }
+</div>

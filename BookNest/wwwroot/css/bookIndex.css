@@ -1,0 +1,240 @@
+﻿body {
+   
+    overflow-x: hidden; 
+
+}
+.page-header {
+    text-align: center;
+    margin: 40px 0;
+}
+
+
+.search-group {
+    position: relative;
+    max-width: 800px;
+    width: 100% !important;
+    margin: 20px auto;
+    flex: 2;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 12px 20px 12px 45px;
+    border: 2px solid #E6D5BF;
+    border-radius: 30px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+    #searchInput:focus {
+        border-color: #C65A3A;
+        box-shadow: 0 4px 12px rgba(198, 90, 58, 0.2);
+        outline: none;
+    }
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #A94A30
+}
+
+.filter-controls {
+    display: flex !important;
+    justify-content: center !important; 
+    align-items: center !important; 
+    gap: 30px !important; 
+    margin-top: 20px;
+    width: 100%;
+}
+
+.category-group select {
+    padding: 12px 20px;
+    border-radius: 25px;
+    border: 2px solid #eaddca;
+    background-color: white;
+    font-family: inherit;
+    outline: none;
+    cursor: pointer;
+    min-width: 200px;
+}
+
+    .category-group select:focus {
+        border-color: #c45d3d;
+    }
+
+.search-group, .category-group {
+    margin: 0 !important;
+    width: auto !important;
+}
+
+.page-title {
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    color: #5A3E2B;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+.main-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+
+
+.book-card {
+    background: #E6D5BF;
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    border-radius: 18px;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+    .book-card:hover {
+        transform: translateY(-10px);
+    }
+
+.card-header h3 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    color: #4A3A2A;
+    text-align: center;
+    margin-bottom: 10px;
+    overflow: hidden;
+    height: auto; 
+    min-height: 40px;
+    margin-bottom: 5px;
+}
+.image-wrapper {
+    position: relative; 
+    background: #FFF6E8;
+    padding: 10px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+}
+
+.last-unit-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #C65A3A;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(-10px); 
+    transition: all 0.3s ease; 
+    pointer-events: none;
+}
+    .last-unit-badge.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .image-wrapper img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+
+.book-info {
+    margin: 5px 0;
+    text-align: center;
+}
+
+    .book-info p {
+        margin: 2px 0;
+    }
+
+.label {
+    color: #3A6EA5;
+    font-weight: bold;
+}
+
+.price-tag {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #4A3A2A;
+}
+
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    margin-top: auto;
+}
+
+.action-btn {
+    text-decoration: none;
+    font-size: 12px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    color: white;
+    flex: 1;
+    text-align: center;
+    transition: opacity 0.2s;
+    border: none; 
+    outline: none;
+}
+
+.view {
+    background: #3A6EA5;
+}
+
+.edit {
+    background: #5a8d5a;
+}
+
+.delete {
+    background: #C65A3A;
+}
+
+.action-btn:hover {
+    opacity: 0.8;
+    color: white;
+}
+.btn-create {
+    background: linear-gradient(135deg, #D27D56 0%, #B56545 100%);
+    color: white !important;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(181, 101, 69, 0.3);
+    transition: all 0.3s ease;
+    margin:0px;
+}
+
+    .btn-create:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(181, 101, 69, 0.4);
+    }

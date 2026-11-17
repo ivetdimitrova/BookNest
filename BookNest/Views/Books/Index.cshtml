@@ -1,0 +1,79 @@
+﻿@model IEnumerable<BookNest.Data.Book>
+
+@{
+    ViewData["Title"] = "Каталог Книги";
+}
+
+<link rel="stylesheet" href="~/css/bookIndex.css" />
+<script src="~/js/bookFilter.js"></script>
+
+
+<div class="page-header">
+    <h1 class="page-title">Нашите Книги</h1>
+
+    <div class="filter-controls">
+        <div class="search-group">
+            <input type="text" id="searchInput" placeholder="Започнете да пишете заглавие или автор..." />
+            <span class="search-icon">🔍</span>
+        </div>
+
+        <div class="category-group">
+            <select id="categoryFilter">
+                <option value="all">Всички категории</option>
+                @foreach (var cat in Model.Select(b => b.Category.Name).Distinct())
+                {
+                    <option value="@cat">@cat</option>
+                }
+            </select>
+        </div>
+    </div>
+</div>
+
+@if (User.IsInRole("Admin"))
+{
+    <a asp-action="Create" class="btn-create"> Добави нова книга</a>
+}
+<div class="main-container" id="bookList">
+
+    @foreach (var item in Model)
+    {
+        <div class="book-card" data-category="@item.Category.Name">
+            <div class="card-header">
+                <h3 class="book-title">@item.Title</h3>
+            </div>
+
+            <div class="image-wrapper">
+                <img src="@item.CoverImage" alt="@item.Title" />
+            </div>
+
+            @if (item.Quantity == 1)
+            {
+                <span class="last-unit-badge">Последна бройка!</span>
+            }
+
+            <div class="book-info">
+                <p><span class="label">Автор:</span> <span class="book-author">@item.Author.Name.Replace(" BG", "")</span></p>
+                <p><span class="label">Цена:</span> <span class="price-tag">@item.Price €</span></p>
+            </div>
+
+            <div class="card-actions">
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="action-btn edit">Редактирай</a>
+                    <button type="button" class="action-btn delete" data-bs-toggle="modal"
+                       data-bs-target="#deleteModal-@item.Id">Изтрий</button>
+                }
+                else
+                {
+                    <a asp-action="Details" asp-route-id="@item.Id" class="action-btn view">Виж</a>
+                }
+            </div>
+        </div>
+
+        @if (User.IsInRole("Admin"))
+        {
+            <partial name="_BookDeleteModalPartial" model="item" />
+        }
+    }
+</div>

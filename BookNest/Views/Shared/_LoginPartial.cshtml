@@ -1,0 +1,28 @@
+﻿@using BookNest.Data
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<Customer> SignInManager
+@inject UserManager<Customer> UserManager
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+    <li >
+            <a class="nav-link"  asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@User.Identity?.Name</a>
+    </li>
+        <li class="log-nav-item">
+        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button  type="submit" class="nav-link btn btn-link text-dark">Излез</button>
+        </form>
+    </li>
+}
+else
+{
+    <li class="log-nav-item">
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Регистрирай се</a>
+    </li>
+        <li class="log-nav-item">
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Влез</a>
+    </li>
+}
+</ul>

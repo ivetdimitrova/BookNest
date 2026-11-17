@@ -1,0 +1,41 @@
+﻿@model IEnumerable<BookNest.Data.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<link rel="stylesheet" href="~/css/categoriesIndex.css" />
+<h1 class="page-title">Категории</h1>
+
+<p>
+    <a asp-action="Create" class="btn-create">Добави нова категория</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Категория
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a class="action-link edit" asp-action="Edit" asp-route-id="@item.Id">Промени</a> |
+                    <button type="button" class="action-link delete"
+                            data-bs-toggle="modal"
+                            data-bs-target="#deleteCategoryModal-@item.Id">
+                        Изтрий
+                    </button>
+                </td>
+            </tr>
+
+            <partial name="_CategoryDeleteModalPartial" model="item" />
+        }
+    </tbody>
+</table>

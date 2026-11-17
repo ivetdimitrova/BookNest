@@ -1,0 +1,49 @@
+﻿@model BookNest.Data.Author
+
+@{
+    ViewData["Title"] = "Create";
+}
+<link rel="stylesheet" href="~/css/еdit.css" />
+<h1>Добавяне на автор</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Име</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label>Тип автор:</label><br />
+                <input type="radio" name="isBulgarian" value="true" id="rbTrue" />
+                <label for="rbTrue">Български автор</label>
+
+                <input type="radio" name="isBulgarian" value="false" id="rbFalse" checked />
+                <label for="rbFalse">Чуждестранен автор</label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Biography" class="control-label">Биография</label>
+                <textarea asp-for="Biography" class="form-control" style="width: 100%; height: 200px; resize: none;"></textarea>
+                <span asp-validation-for="Biography" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl" class="control-label">Снимка(url)</label>
+                <input asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Добави" class="btn btn-primary" />
+                <a asp-action="Index" class="back-to-list">Върни се назад</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
